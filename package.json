@@ -1,0 +1,26 @@
+{
+  "name": "lambda-uri",
+  "version": "1.0.2",
+  "description": "Lambda URI parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NunuM/lambda-parser"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "uri",
+    "lambda",
+    "parser"
+  ],
+  "author": "NunuM",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "uuid": "^3.3.3"
+  }
+}
