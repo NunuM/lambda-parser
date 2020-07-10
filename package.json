@@ -1,11 +1,12 @@
 {
   "name": "lambda-uri",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lambda URI parser",
   "repository": {
     "type": "git",
     "url": "https://github.com/NunuM/lambda-parser"
   },
+  "homepage": "https://talos.sh",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
