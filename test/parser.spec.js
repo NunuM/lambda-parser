@@ -4,13 +4,13 @@ const {LambdaURI} = require('../index');
 
 describe("LambdaURI", () => {
     it("Test setters", () => {
-        let instance = new LambdaURI('fog://', 'user', 'pt_pt', 'prj', uuid('id'), 1, 2);
+        let instance = new LambdaURI('fog://', 'user', 'se_pt', 'prj', uuid('id'), 'zzz', 2);
 
         assert.equal(instance.protocol, 'fog://');
         assert.equal(instance.user, 'user');
-        assert.equal(instance.countryCode, 'pt_pt');
+        assert.equal(instance.regionCountryCode, 'se_pt');
         assert.equal(instance.project, 'prj');
-        assert.equal(instance.lambdaVersion, 1);
+        assert.equal(instance.lambdaVersion, 'zzz');
         assert.equal(instance.lambdaInstance, 2);
     });
 
@@ -19,19 +19,19 @@ describe("LambdaURI", () => {
     });
 
     it("Test wrong data type", () => {
-        assert.throws(()=>LambdaURI.parseFromString("fog://pt_pt.prj.32423.1.1"), Error, "Invalid lambda URI");
+        assert.throws(()=>LambdaURI.parseFromString("fog://pt_pt.prj.32423.zzz.1"), Error, "Invalid lambda URI");
     });
 
 
     it("Test valid URI with proto", () => {
         let id = uuid();
-        let instance = LambdaURI.parseFromString("fog://nuno@nunum.me@pt_pt.prj." + id + '.1.2');
+        let instance = LambdaURI.parseFromString("fog://nuno@nunum.me@se_pt.prj." + id + '.ttt.2');
 
         assert.equal(instance.protocol, 'fog://');
         assert.equal(instance.user, 'nuno@nunum.me');
-        assert.equal(instance.countryCode, 'pt_pt');
+        assert.equal(instance.regionCountryCode, 'se_pt');
         assert.equal(instance.project, 'prj');
-        assert.equal(instance.lambdaVersion, 1);
+        assert.equal(instance.lambdaVersion, 'ttt');
         assert.equal(instance.lambdaInstance, 2);
     });
 
@@ -42,9 +42,9 @@ describe("LambdaURI", () => {
 
         assert.equal(instance.protocol, 'fog://');
         assert.equal(instance.user, 'nuno@nunum.me');
-        assert.equal(instance.countryCode, 'pt_pt');
+        assert.equal(instance.regionCountryCode, 'pt_pt');
         assert.equal(instance.project, 'prj');
-        assert.equal(instance.lambdaVersion, 1);
+        assert.equal(instance.lambdaVersion, '1');
         assert.equal(instance.lambdaInstance, 2);
 
         assert.equal(instance.toString(), 'fog://' + uri);
@@ -57,7 +57,7 @@ describe("LambdaURI", () => {
 
         assert.equal(instance.protocol, 'fog://');
         assert.equal(instance.user, 'nuno@nunum.me');
-        assert.equal(instance.countryCode, 'pt_pt');
+        assert.equal(instance.regionCountryCode, 'pt_pt');
         assert.equal(instance.project, 'prj');
         assert.equal(instance.lambdaVersion, 1);
         assert.equal(instance.lambdaInstance, 1);
@@ -72,14 +72,15 @@ describe("LambdaURI", () => {
             getId : () => theId,
             getOwner : () => 'nuno@nunum.me',
             getEtag : () => 1,
-            getProject : () => 'prj'
-        });
+            getProject : () => 'prj',
+            getInstanceNumber: () => 1 ,
+        }, 'se_pt');
 
         assert.equal(instance.protocol, 'fog://');
         assert.equal(instance.user, 'nuno@nunum.me');
-        assert.equal(instance.countryCode, 'pt_pt');
+        assert.equal(instance.regionCountryCode, 'se_pt');
         assert.equal(instance.project, 'prj');
-        assert.equal(instance.lambdaVersion, 1);
+        assert.equal(instance.lambdaVersion, '1');
         assert.equal(instance.lambdaInstance, 1);
 
     });
