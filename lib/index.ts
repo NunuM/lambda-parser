@@ -1,1 +1,1 @@
-export {LambdaURI} from './parser'
+export {LambdaURI, FOG_PROTO} from './parser'

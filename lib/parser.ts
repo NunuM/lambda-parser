@@ -1,4 +1,4 @@
-const FOG_PROTO = 'fog://';
+export const FOG_PROTO = 'fog://';
 
 /**
  * @class
