@@ -3,31 +3,18 @@ const FOG_PROTO = 'fog://';
 /**
  * @class
  */
-class LambdaURI {
+export class LambdaURI {
 
     /**
      * @constructor
-     *
-     * @param {string} protocol
-     * @param {string} regionCountryCode
-     * @param {string} project
-     * @param {string} lambdaId
-     * @param {string} lambdaVersion
-     * @param {number} lambdaInstance
      */
     constructor(
-        protocol,
-        regionCountryCode,
-        project,
-        lambdaId,
-        lambdaVersion,
-        lambdaInstance) {
-        this._protocol = protocol;
-        this._project = project;
-        this._regionCountryCode = regionCountryCode;
-        this._lambdaVersion = lambdaVersion;
-        this._lambdaId = lambdaId;
-        this._lambdaInstance = lambdaInstance;
+        private readonly _protocol: string,
+        private readonly _regionCountryCode: string,
+        private readonly _project: string,
+        private readonly _lambdaId: string,
+        private readonly _lambdaVersion: string,
+        private _lambdaInstance: number) {
     }
 
     /**
@@ -108,7 +95,7 @@ class LambdaURI {
      * @throws TypeError If argument is not string
      * @throws Error If is an invalid URI
      */
-    static parseFromString(uri) {
+    static parseFromString(uri: string): LambdaURI {
 
         if (typeof uri === 'string'
             && uri.length > 0
@@ -153,7 +140,7 @@ class LambdaURI {
      * @throws TypeError If argument is not object
      * @throws Error If object does have the methods
      */
-    static parseFromLambda(lambda, regionCountryCode) {
+    static parseFromLambda(lambda: any, regionCountryCode: string): LambdaURI {
 
         if (typeof lambda === 'object') {
             try {
@@ -163,12 +150,10 @@ class LambdaURI {
                     lambda.getId(),
                     lambda.getEtag(),
                     lambda.getInstanceNumber())
-            } catch (e) {
+            } catch (e: any) {
                 throw new Error(e.toString());
             }
         }
         throw new TypeError("URI is invalid data type.");
     }
 }
-
-module.exports = {LambdaURI};
