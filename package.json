@@ -1,6 +1,6 @@
 {
   "name": "lambda-uri",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "Lambda URI parser",
   "repository": {
     "type": "git",
