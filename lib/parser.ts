@@ -159,7 +159,7 @@ export class LambdaURI {
      * @return {string}
      */
     toString() {
-        return `${this.protocol}${this.project}@${this.regionCountryCode}.${this.lambdaId}.${this.lambdaVersion}.${this.isToAllLambdaInstances() ? '*' : this.lambdaInstance}`;
+        return `${this.protocol}${this.project}@${this.regionCountryCode}.${this.lambdaId}.${this.lambdaVersion}.${this.isToAllLambdaInstances() ? WILD_CARD : this.lambdaInstance}`;
     }
 
     /**
@@ -303,7 +303,7 @@ export class LambdaURI {
                     project,
                     id || ALL_LAMBDAS,
                     version || ALL_VERSIONS,
-                    Number(instance || ALL_INSTANCES));
+                    Number((instance && instance != WILD_CARD) ? instance : ALL_INSTANCES));
             }
 
             throw new Error("Invalid lambda URI");

@@ -90,6 +90,14 @@ describe("LambdaURI", () => {
 
     })
 
+    test('match same uris from to  string', () => {
+
+        const lambdaURI = LambdaURI.allLambdaInstances('se_pt', 'pej', '12344', '1');
+
+        expect(lambdaURI.toString()).toBe(LambdaURI.parseFromString(lambdaURI.toString()).toString());
+
+    })
+
 
     test('test wild cards instance for same lambda id', () => {
         const lambdaURI = new LambdaURI('fog://', 'se_pt', 'test', '11111', '2', 2);
